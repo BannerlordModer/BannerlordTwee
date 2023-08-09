@@ -71,6 +71,22 @@ namespace BannerlordTwee.Parser {
         public Passage ParsePassage(string passage) {
             return new Passage();
         }
+        public List<Paragraph> ParseParagraphs(List<string> DataList) {
+            var paragraphs = new List<Paragraph>();
+            var tagStart = 0;
+            string title = null;
+            for (int i = 0; i < DataList.Count; i++) {
+                if (DataList[i].StartsWith("::")) {
+                    if (tagStart < i) {
+                        var content = string.Join("\n", DataList.GetRange(tagStart + 1, i - tagStart - 1));
+                        paragraphs.Add(new Paragraph() { Title = title, Content = content });
+                    }
+                    tagStart = i;
+                    title = DataList[i];
+                }
+            }
+            return paragraphs;
+        }
         public Story ParseToStory() {
             var story = new Story();
             var tagStart = 0;
