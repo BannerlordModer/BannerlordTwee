@@ -1,0 +1,56 @@
+:: StoryTitle
+1
+
+
+:: StoryData
+{
+  "ifid": "6B2EFB77-3101-4602-B826-06BBFDD3D345",
+  "format": "Harlowe",
+  "format-version": "3.3.6",
+  "start": "开始",
+  "tag-colors": {
+    "tag2": "red",
+    "taga": "orange"
+  },
+  "zoom": 1
+}
+
+
+:: StoryData {"position":"1050,575","size":"100,100"}
+这里是下一项2
+
+
+:: StoryTitle {"position":"900,625","size":"100,100"}
+这里是下一项
+
+
+:: 开始 {"position":"700,325","size":"100,100"}
+啊啊啊
+
+<!--Comment Text-->
+
+[[选项1->这是选项1]]
+[[选项2->这是选项2]]
+[[选项3]]
+
+\::
+
+
+:: 这是选项1 [tag1 tag2 taga] {"position":"950,125","size":"100,100"}
+不是很好
+
+[[选项3]]
+[[这是选项2]]
+[[返回->开始]]
+
+
+
+:: 这是选项2 {"position":"875,475","size":"100,100"}
+这里是选项2
+
+[[StoryTitle]]
+[[第二个->StoryData]]
+
+
+:: 选项3 [tagme \[a\] \{b\} aa---a] {"position":"1050,325","size":"100,100"}
+这里是选项3

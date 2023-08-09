@@ -19,4 +19,17 @@
     <Folder Include="TestFiles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BannerlordTwee\BannerlordTwee.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestFiles\1.twee">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\2.twee">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
