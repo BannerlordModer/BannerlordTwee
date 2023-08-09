@@ -28,30 +28,30 @@ namespace BannerlordTwee.Parser {
                     i + 2 <TitleString.Length && 
                     TitleString[i + 2].Equals(' ')) {
                     i += 2;
-                    nameStart = i;
+                    nameStart = i + 1;
                     continue;
                 }
                 if (TitleString[i].Equals('[') && i - 1 > 0 && !TitleString[i - 1].Equals('\\')) {
                     tagStart = i;
-                    title.Name = TitleString.Substring(nameStart, i - 1);
+                    title.Name = TitleString.Substring(nameStart, i - 1 - nameStart);
                     continue;
                 }
                 if (TitleString[i].Equals(']') && i - 1 > 0 && !TitleString[i - 1].Equals('\\')) {
                     var tagEnd = i;
-                    var tags = string.Concat(TitleString.ToList().GetRange(tagStart + 1, tagEnd - 1));
+                    var tags = string.Concat(TitleString.ToList().GetRange(tagStart + 1, tagEnd - tagStart - 1));
                     title.Tags = tags.Split(' ').ToList();
                     continue;
                 }
                 if (TitleString[i].Equals('{') && i - 1 > 0 && !TitleString[i - 1].Equals('\\')) {
                     psStart = i;
                     if (tagStart == 0) {
-                        title.Name = TitleString.Substring(nameStart, i - 1);
+                        title.Name = TitleString.Substring(nameStart, i - 1 - nameStart);
                     }
                     continue;
                 }
                 if (TitleString[i].Equals('}') && i - 1 > 0 && !TitleString[i - 1].Equals('\\')) {
                     var psEnd = i;
-                    var ps = string.Concat(TitleString.ToList().GetRange(psStart, psEnd));
+                    var ps = string.Concat(TitleString.ToList().GetRange(psStart, psEnd - psStart + 1));
                     var psDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(ps);
                     if (psDict.TryGetValue("position", out var pos)) {
                         title.Position = pos;
