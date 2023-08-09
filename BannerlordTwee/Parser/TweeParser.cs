@@ -68,14 +68,33 @@ namespace BannerlordTwee.Parser {
 
             return title;
         }
+        public Passage ParsePassage(string passage) {
+            return new Passage();
+        }
         public Story ParseToStory() {
             var story = new Story();
             var tagStart = 0;
+            Title title = null;
             for (int i = 0; i < TweeDataList.Count; i++) {
                 if (TweeDataList[i].StartsWith("::")) {
-                    tagStart = i;
-                    var title = ParseTitle(TweeDataList[i]);
+                    if (tagStart < i) {
+                        var content = string.Join("\n", TweeDataList.GetRange(tagStart + 1, i - tagStart - 1));
+                        if (title is not null) {
+                            if (title.IsStoryTitle) {
+                                story.StoryTitle = content.Replace("\n", "");
+                            } else if (title.IsStoryData) {
+                                story.StoryData = JsonConvert.DeserializeObject<StoryData>(content);
+                            } else {
+                                var passage = ParsePassage(content);
+                                passage.Title = title;
+                                story.Passages.Add(passage);
+                            }
+                            title = null;
+                        }
 
+                    }
+                    title = ParseTitle(TweeDataList[i]);
+                    tagStart = i;
                 }
             }
             return story;
