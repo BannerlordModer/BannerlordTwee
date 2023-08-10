@@ -85,6 +85,17 @@ namespace BannerlordTwee.Parser {
                     title = DataList[i];
                 }
             }
+            paragraphs.Add(
+                new Paragraph() { 
+                    Title = title, 
+                    Content = string.Join(
+                        "\n", 
+                        DataList.GetRange(
+                            tagStart + 1, 
+                            DataList.Count - tagStart - 1
+                            )
+                        ) 
+                });
             return paragraphs;
         }
         public Story ParseToStory() {
