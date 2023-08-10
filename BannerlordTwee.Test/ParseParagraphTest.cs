@@ -57,6 +57,10 @@ namespace BannerlordTwee.Test {
             }
             return list;
         }
+        [DataTestMethod]
+        [DataRow(10)]
+        [DataRow(100)]
+        [DataRow(1000)]
         public void Test_Parse_Paragraph(int count) {
             var parser = new TweeParser("");
             var paragraphs = ConstructParagraphs(count);
@@ -67,18 +71,6 @@ namespace BannerlordTwee.Test {
                 Assert.AreEqual(paragraphs[i].Title, ParsedParagraph[i].Title);
                 Assert.AreEqual(paragraphs[i].Content, ParsedParagraph[i].Content);
             }
-        }
-        [TestMethod]
-        public void Test_Parse_Paragraph_10() {
-            Test_Parse_Paragraph(10);
-        }
-        [TestMethod]
-        public void Test_Parse_Paragraph_100() {
-            Test_Parse_Paragraph(100);
-        }
-        [TestMethod]
-        public void Test_Parse_Paragraph_1000() {
-            Test_Parse_Paragraph(1000);
         }
         [TestMethod]
         public void Test_Parse_Paragraph_1000_1000() {
