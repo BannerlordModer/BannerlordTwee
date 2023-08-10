@@ -57,49 +57,33 @@ namespace BannerlordTwee.Test {
             }
             return list;
         }
-        [TestMethod]
-        public void Test_Parse_Paragraph_10() {
+        public void Test_Parse_Paragraph(int count) {
             var parser = new TweeParser("");
-            var paragraphs = ConstructParagraphs(10);
+            var paragraphs = ConstructParagraphs(count);
             var list = GenerateParagraphs(paragraphs);
             var ParsedParagraph = parser.ParseParagraphs(list);
             Assert.AreEqual(paragraphs.Count, ParsedParagraph.Count);
-            for (int i = 0; i < paragraphs.Count;i++) {
+            for (int i = 0; i < paragraphs.Count; i++) {
                 Assert.AreEqual(paragraphs[i].Title, ParsedParagraph[i].Title);
                 Assert.AreEqual(paragraphs[i].Content, ParsedParagraph[i].Content);
             }
-            //CollectionAssert.AreEqual(paragraphs, ParsedParagraph);
+        }
+        [TestMethod]
+        public void Test_Parse_Paragraph_10() {
+            Test_Parse_Paragraph(10);
         }
         [TestMethod]
         public void Test_Parse_Paragraph_100() {
-            var parser = new TweeParser("");
-            var paragraphs = ConstructParagraphs(100);
-            var list = GenerateParagraphs(paragraphs);
-            var ParsedParagraph = parser.ParseParagraphs(list);
-            Assert.AreEqual(paragraphs.Count, ParsedParagraph.Count);
-            for (int i = 0; i < paragraphs.Count; i++) {
-                Assert.AreEqual(paragraphs[i].Title, ParsedParagraph[i].Title);
-                Assert.AreEqual(paragraphs[i].Content, ParsedParagraph[i].Content);
-            }
-            //CollectionAssert.AreEqual(paragraphs, ParsedParagraph);
+            Test_Parse_Paragraph(100);
         }
         [TestMethod]
         public void Test_Parse_Paragraph_1000() {
-            var parser = new TweeParser("");
-            var paragraphs = ConstructParagraphs(1000);
-            var list = GenerateParagraphs(paragraphs);
-            var ParsedParagraph = parser.ParseParagraphs(list);
-            Assert.AreEqual(paragraphs.Count, ParsedParagraph.Count);
-            for (int i = 0; i < paragraphs.Count; i++) {
-                Assert.AreEqual(paragraphs[i].Title, ParsedParagraph[i].Title);
-                Assert.AreEqual(paragraphs[i].Content, ParsedParagraph[i].Content);
-            }
-            //CollectionAssert.AreEqual(paragraphs, ParsedParagraph);
+            Test_Parse_Paragraph(1000);
         }
         [TestMethod]
         public void Test_Parse_Paragraph_1000_1000() {
             for (int i = 0; i < 1000; i++) {
-                Test_Parse_Paragraph_1000();
+                Test_Parse_Paragraph(1000);
             }
         }
     }
