@@ -69,6 +69,8 @@ namespace BannerlordTwee.Parser {
             return title;
         }
         public Passage ParsePassage(string passage) {
+            
+            throw new NotImplementedException();
             return new Passage();
         }
         public List<Paragraph> ParseParagraphs(List<string> DataList) {
