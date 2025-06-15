@@ -1,0 +1,38 @@
+name: Publish BannerlordTwee.SourceGenerator to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-pack-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Get version from tag
+        id: get_version
+        # Strips the 'v' prefix from the tag name, e.g., v1.2.3 becomes 1.2.3
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Pack Source Generator
+        run: dotnet pack BannerlordTwee.SourceGenerator/BannerlordTwee.SourceGenerator.csproj --configuration Release --no-build -o ./packages /p:Version=${{ steps.get_version.outputs.VERSION }}.${{ github.run_number }}
+
+      - name: Push to NuGet
+        run: dotnet nuget push "./packages/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json" --skip-duplicate 

@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <BannerlordTweeNamespace>BannerlordTwee.Generated.Dialogs</BannerlordTweeNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +26,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BannerlordTwee\BannerlordTwee.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BannerlordTwee.SourceGenerator\BannerlordTwee.SourceGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="TestFiles\1.twee" />
   </ItemGroup>
 
   <ItemGroup>
