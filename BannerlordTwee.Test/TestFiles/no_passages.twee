@@ -1,0 +1,7 @@
+:: StoryTitle
+This is a story title.
+
+:: StoryData
+{
+    "start": "Start Passage"
+} 

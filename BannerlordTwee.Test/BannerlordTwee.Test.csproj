@@ -33,6 +33,15 @@
     <None Update="TestFiles\2.twee">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestFiles\edge_cases.twee">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\empty.twee">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\no_passages.twee">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\TestParagraph\data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
